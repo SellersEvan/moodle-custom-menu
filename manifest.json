@@ -8,6 +8,9 @@
     "content_scripts": [{
         "js": [ "content.js" ],
         "matches": ["https://moodle.rose-hulman.edu/*"]
-    }]
+    }],
+    "permissions": [
+        "storage"
+    ]
    
   }
