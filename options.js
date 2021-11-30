@@ -1,21 +1,21 @@
-function addItemRow( label="", link="", icon="" ) {
+function addItemRow( meta={ "label": "", "link": "", "icon": "" } ) {
     let container = document.querySelector( ".item-list-container" );
     let itemCount = document.querySelectorAll( ".item-list-container .item-row" ).length;
     let innerHTML = `
                         <div class="item-row" id="item-${ itemCount }">
                             <div class="item-input">
                                 <p>Label</p>
-                                <input class="item-control-label" type="text" placeholder="Dashboard" value="${ label }">
+                                <input class="item-control-label" type="text" placeholder="Dashboard" value="${ meta.label }">
                             </div>
                     
                             <div class="item-input">
                                 <p>Link</p>
-                                <input class="item-control-link" type="text" placeholder="https://moodle.rose-hulman.edu/my/" value="${ link }">
+                                <input class="item-control-link" type="text" placeholder="https://moodle.rose-hulman.edu/my/" value="${ meta.link }">
                             </div>
                     
                             <div class="item-input">
                                 <p>Icon</p>
-                                <input class="item-control-icon" type="text" placeholder="fa-laptop" value="${ icon }">
+                                <input class="item-control-icon" type="text" placeholder="fa-laptop" value="${ meta.icon }">
                             </div>
                     
                             <div class="item-contol">
@@ -24,7 +24,6 @@ function addItemRow( label="", link="", icon="" ) {
                         </div>
                     `;
     let dom = new DOMParser().parseFromString( innerHTML, "text/html" );
-    console.log( dom.childNodes[ 0 ] )
     container.appendChild( dom.childNodes[ 0 ] );
 }
 
@@ -48,15 +47,21 @@ function saveItems() {
                 });
     });
     chrome.storage.sync.set( { "items": items }, () => {
-        console.log('Value is set to ' + value);
+        console.log('Value is set to ' + items );
     });
 }
 
 
 function init() {
-    if ( document.querySelectorAll( ".item-list-container .item-row" ).length == 0 ) {
-        addItemRow();
-    }
+    let container = document.querySelectorAll( ".item-list-container .item-row" );
+    let addBtn    = document.querySelector( "#action-btn-add-item" );
+    let saveBtn   = document.querySelector( "#action-btn-save-items" );
+    addBtn.addEventListener( "click", () => { addItemRow(); });
+    saveBtn.addEventListener( "click", () => { saveItems(); });
+    chrome.storage.sync.get( [ "items" ] , function( result ) {
+        result[ "items" ].forEach( ( item ) => { addItemRow( item ); } );
+        if ( container.length == 0 ) addItemRow();
+    });
 }
 
 init();

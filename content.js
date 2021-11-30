@@ -21,23 +21,33 @@ function buildHtmlDom( items ) {
                     <a class="list-group-item list-group-item-action" href="${ item[ "link" ] }" >
                         <div class="ml-0">
                             <div class="media">
-                                <span class="media-left"><i class="icon fa ${ item[ "icon" ] || "fa-tachometer" } fa-fw" aria-hidden="true"></i></span>
+                                <span class="media-left"><i class="icon fa ${ item[ "icon" ] || "fa-link" } fa-fw" aria-hidden="true"></i></span>
                                 <span class="media-body ">${ item[ "label" ] }</span>
                             </div>
                         </div>
                     </a>
                 </li>`;
     });
-    return html + "</ul>";
+    return html + "</ul><p style='color:gray;font-size:0.6rem;text-align: center;padding-top:0.5rem;'>Moodle Custom Menu designed by <a href='https://sellersew.com' target='blank' style='color:grey;'>Sellers Industry</a></p>";
 }
 
 
 function inject( htmlDom ) {
     let menu = document.querySelectorAll( "#nav-drawer .list-group" );
     menu     = menu[ menu.length - 1 ];
-    console.log( menu )
     menu.innerHTML = htmlDom;
 }
 
+function init() {
+    chrome.storage.sync.get( [ "items" ] , function( result ) {
+        if ( !result[ "items" ] || result[ "items" ].length == 0 ) {
+            inject( dummyFill );
+        } else {
+            inject( buildHtmlDom( result[ "items" ] ) );
+        }
+    });
+}
+
+init();
 // inject( buildHtmlDom( [ { "label": "Dashboard", "link": "https://moodle.rose-hulman.edu/my/", "icon": "fa-laptop" } ] ) );
-inject( dummyFill );
+// inject( dummyFill );
