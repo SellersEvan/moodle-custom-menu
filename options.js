@@ -33,12 +33,15 @@ function addItemRow( meta={ "label": "", "link": "", "icon": "" } ) {
                             </div>
                     
                             <div class="item-contol">
-                                <button class="item-control-remove" onclick="removeItemRow( ${ itemCount } )">Remove</button>
+                                <button class="item-control-remove">Remove</button>
                             </div>
                         </div>
                     `;
     let dom = new DOMParser().parseFromString( innerHTML, "text/html" );
-    container.appendChild( dom.childNodes[ 0 ] );
+    dom.querySelector( ".item-control-remove" ).addEventListener( "click", () => {
+        removeItemRow( 0 );
+    });
+    container.appendChild( dom.querySelector( ".item-row" ) );
 }
 
 

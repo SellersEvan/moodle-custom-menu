@@ -18,9 +18,13 @@ let dummyFill = `
                     </div>
                     <b>Custom Moodle Menu</b>
                     <br>
-                    Designed by <a href='https://sellersew.com' target='blank'>Sellers Industry</a>. Add menu items through the extension options page.
+                    Add menu items through the extension options page.
                     <br><br>
                     <a href='/my'>My Dashboard</a>
+                    <br>
+                    <a href='/'>Site Home</a>
+                    <br>
+                    <a href='/calendar'>Calendar</a>
                 </div>`;
 
 // Build Html for Sidebar
