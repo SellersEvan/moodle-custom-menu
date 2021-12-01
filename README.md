@@ -1,10 +1,9 @@
-# moodle-custom-menu
-Chrome Extension for customizing menu (rose-hulman moodle)
+# Moodle Custom Menu
+Customize your moodle page navigation menu sidebar. If you would like your 
 
-- [x] Remove Button
-- [x] Update Save Buttons and refresh on save
-- [x] Update Heading and footer of options and title
-- [x] Update Zero State
-- [ ] Update Readme
 
 Icon from Icons 8 (add link)
+
+- [ ] Readme Page
+- [ ] Add link to request added moodle url
+- [ ] Upload to chrome store
