@@ -11,6 +11,7 @@
  */
 
 
+// Add Item rows
 function addItemRow( meta={ "label": "", "link": "", "icon": "" } ) {
     let container = document.querySelector( ".item-list-container" );
     let itemCount = document.querySelectorAll( ".item-list-container .item-row" ).length;
@@ -41,10 +42,13 @@ function addItemRow( meta={ "label": "", "link": "", "icon": "" } ) {
 }
 
 
+// Remove Items
 function removeItemRow( index ) {
     document.querySelector( ".item-list-container" ).removeChild( document.querySelector( `#item-${ index }` ) );
 }
 
+
+// Save Items
 function saveItems() {
     let items = [];
     document.querySelectorAll( ".item-list-container .item-row" ).forEach( elm => {
@@ -66,6 +70,7 @@ function saveItems() {
 }
 
 
+// Init
 function init() {
     let container = document.querySelectorAll( ".item-list-container .item-row" );
     let addBtn    = document.querySelector( "#action-btn-add-item" );
