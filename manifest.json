@@ -1,10 +1,15 @@
 {
     "manifest_version": 2,
-   
-    "name": "Modify CSS and HTML",
+    "name": "Moodle Custom Menu by Sellers Industry",
+    "short_name": "Moodle Custom Menu",
+    "author": "Sellers Industry",
     "version": "0.1.0",
-    "description": "Lateral blog post demo extension",
+    "homepage_url": "https://sellersew.com",
+    "description": "Customize your Rose-Hulman moodle page navigation menu sidebar",
     "options_page": "options.html",
+    "icons": {
+        "48": "favicon.png"
+    },
     "content_scripts": [{
         "js": [ "content.js" ],
         "matches": ["https://moodle.rose-hulman.edu/*"]
@@ -12,5 +17,4 @@
     "permissions": [
         "storage"
     ]
-   
   }

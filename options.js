@@ -1,3 +1,16 @@
+/*
+ *   Copyright (C) 2021 Sellers Industry
+ *   distributed under the MIT License
+ *
+ *   author: Evan Sellers <sellersew@gmail.com>
+ *   date: Wed Dec 01 2021
+ *   file: options.js
+ *   project: Moodle Custom Menu
+ *   purpose: Option Menu
+ *
+ */
+
+
 function addItemRow( meta={ "label": "", "link": "", "icon": "" } ) {
     let container = document.querySelector( ".item-list-container" );
     let itemCount = document.querySelectorAll( ".item-list-container .item-row" ).length;
@@ -47,7 +60,8 @@ function saveItems() {
                 });
     });
     chrome.storage.sync.set( { "items": items }, () => {
-        console.log('Value is set to ' + items );
+        alert( "Updated the sidebar settings for moodle. You can now reload your moodle site." );
+        window.location.reload();
     });
 }
 
