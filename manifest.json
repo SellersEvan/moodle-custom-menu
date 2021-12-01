@@ -1,5 +1,5 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Moodle Custom Menu by Sellers Industry",
     "short_name": "Moodle Custom Menu",
     "author": "Sellers Industry",
@@ -14,7 +14,10 @@
         "js": [ "content.js" ],
         "matches": [ "https://moodle.rose-hulman.edu/*" ]
     }],
-    "web_accessible_resources": [ "options.html" ],
+    "web_accessible_resources": [{
+        "resources": [ "options.html" ],
+        "matches": [ "https://moodle.rose-hulman.edu/*" ]
+    }],
     "permissions": [
         "storage"
     ]
