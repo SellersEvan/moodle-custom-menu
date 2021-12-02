@@ -1,9 +1,3 @@
 # Moodle Custom Menu
-Customize your moodle page navigation menu sidebar. If you would like your 
-
-
-Icon from Icons 8 (add link)
-
-- [ ] Readme Page
-- [ ] Add link to request added moodle url
-- [ ] Upload to chrome store
+Customize your moodle page navigation menu sidebar. This is designed to work only
+for the Rose-Hulman moodle page, however you can fork this and update the `manifest.json` file to make it work for other moodle pages.
