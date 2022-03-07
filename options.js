@@ -39,7 +39,7 @@ function addItemRow( meta={ "label": "", "link": "", "icon": "" } ) {
                     `;
     let dom = new DOMParser().parseFromString( innerHTML, "text/html" );
     dom.querySelector( ".item-control-remove" ).addEventListener( "click", () => {
-        removeItemRow( 0 );
+        removeItemRow( itemCount );
     });
     container.appendChild( dom.querySelector( ".item-row" ) );
 }
