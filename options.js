@@ -28,8 +28,8 @@ function addItemRow( meta={ "label": "", "link": "", "icon": "" } ) {
                             </div>
                     
                             <div class="item-input">
-                                <p>Icon</p>
-                                <input class="item-control-icon" type="text" placeholder="fa-laptop" value="${ meta.icon }">
+                                <p>Image URL</p>
+                                <input class="item-control-icon" type="text" placeholder="https://sellersew.com/favicon/favicon-32x32.png" value="${ meta.icon }">
                             </div>
                     
                             <div class="item-contol">

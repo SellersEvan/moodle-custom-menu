@@ -36,7 +36,12 @@ function buildHtmlDom( items ) {
                     <a class="list-group-item list-group-item-action" href="${ item[ "link" ] }" >
                         <div class="ml-0">
                             <div class="media">
-                                <span class="media-left"><i class="icon fa ${ item[ "icon" ] || "fa-link" } fa-fw" aria-hidden="true"></i></span>
+                                <span class="media-left">
+                                ${ item[ "icon" ].includes( "https://" ) ?
+                                    `<img src="${ item[ "icon" ] }" style="width: 16px; height: 16px; margin-right: .5rem;"` :
+                                    `<i class="icon fa ${ item[ "icon" ] || "fa-link" } fa-fw" aria-hidden="true"></i>`
+                                }
+                                </span>
                                 <span class="media-body ">${ item[ "label" ] }</span>
                             </div>
                         </div>
