@@ -35,10 +35,10 @@ function buildHtmlDom( items ) {
         html += `<li>
                     <a class="list-group-item list-group-item-action" href="${ item[ "link" ] }" >
                         <div class="ml-0">
-                            <div class="media">
+                            <div class="media" style="display: flex; align-items: center;">
                                 <span class="media-left">
                                 ${ item[ "icon" ].includes( "https://" ) ?
-                                    `<img src="${ item[ "icon" ] }" style="width: 16px; height: 16px; margin-right: .5rem;"` :
+                                    `<img src="${ item[ "icon" ] }" style="width: 25px; height: 25px; margin-right: .75rem;"` :
                                     `<i class="icon fa ${ item[ "icon" ] || "fa-link" } fa-fw" aria-hidden="true"></i>`
                                 }
                                 </span>
