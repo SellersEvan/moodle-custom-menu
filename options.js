@@ -35,11 +35,25 @@ function addItemRow( meta={ "label": "", "link": "", "icon": "" } ) {
                             <div class="item-contol">
                                 <button class="item-control-remove">Remove</button>
                             </div>
+
+                            <div class="item-contol">
+                                <button class="item-control-up">&#8593;</button>
+                            </div>
+
+                            <div class="item-contol">
+                                <button class="item-control-down">&#8595;</button>
+                            </div>
                         </div>
                     `;
     let dom = new DOMParser().parseFromString( innerHTML, "text/html" );
     dom.querySelector( ".item-control-remove" ).addEventListener( "click", () => {
         removeItemRow( itemCount );
+    });
+    dom.querySelector( ".item-control-up" ).addEventListener( "click", () => {
+        moveItemUp( itemCount );
+    });
+    dom.querySelector( ".item-control-down" ).addEventListener( "click", () => {
+        moveItemDown( itemCount );
     });
     container.appendChild( dom.querySelector( ".item-row" ) );
 }
@@ -51,8 +65,31 @@ function removeItemRow( index ) {
 }
 
 
-// Save Items
-function saveItems() {
+// Array Move
+function arraymove( arr, fromIndex, toIndex ) {
+    fromIndex   = Math.max( Math.min( fromIndex, arr.length - 1 ), 0 );
+    toIndex     = Math.max( Math.min( toIndex, arr.length - 1 ), 0 );
+    let element = arr[ fromIndex ];
+    arr.splice( fromIndex, 1 );
+    arr.splice( toIndex, 0, element );
+    return arr;
+}
+
+
+// Move Item Up
+function moveItemUp( index ) {
+    loadItems( arraymove( getItems(), index, index - 1 ) );
+}
+
+
+// Move Item Down
+function moveItemDown( index ) {
+    loadItems( arraymove( getItems(), index, index + 1 ) );
+}
+
+
+// Get Items
+function getItems() {
     let items = [];
     document.querySelectorAll( ".item-list-container .item-row" ).forEach( elm => {
         let _label = elm.querySelector( ".item-control-label" ).value;
@@ -66,24 +103,39 @@ function saveItems() {
                     "icon": _icon,
                 });
     });
-    chrome.storage.sync.set( { "items": items }, () => {
+    return items;
+}
+
+
+// Save Items
+function saveItems() {
+    chrome.storage.sync.set( { "items": getItems }, () => {
         alert( "Updated the sidebar settings for moodle. You can now reload your moodle site." );
         window.location.reload();
     });
 }
 
 
+// Load Items
+function loadItems( items ) {
+    let container = document.querySelector( ".item-list-container" );
+    container.innerHTML = "";
+    items.forEach( ( item ) => { addItemRow( item ); } );
+    addItemRow();
+}
+
+
 // Init
 function init() {
-    let container = document.querySelectorAll( ".item-list-container .item-row" );
     let addBtn    = document.querySelector( "#action-btn-add-item" );
     let saveBtn   = document.querySelector( "#action-btn-save-items" );
     addBtn.addEventListener( "click", () => { addItemRow(); });
     saveBtn.addEventListener( "click", () => { saveItems(); });
     chrome.storage.sync.get( [ "items" ] , function( result ) {
-        result[ "items" ].forEach( ( item ) => { addItemRow( item ); } );
-        if ( container.length == 0 ) addItemRow();
+        loadItems( result[ "items" ] );
     });
 }
 
+
 init();
+
