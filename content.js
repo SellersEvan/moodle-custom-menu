@@ -38,7 +38,7 @@ function buildHtmlDom( items ) {
                             <div class="media" style="display: flex; align-items: center;">
                                 <span class="media-left">
                                 ${ item[ "icon" ].includes( "https://" ) ?
-                                    `<img src="${ item[ "icon" ] }" style="width: 25px; height: 25px; margin-right: .75rem;"` :
+                                    `<img src="${ item[ "icon" ] }" style="width: 20px; height: 20px; margin-right: .5rem;"` :
                                     `<i class="icon fa ${ item[ "icon" ] || "fa-link" } fa-fw" aria-hidden="true"></i>`
                                 }
                                 </span>
