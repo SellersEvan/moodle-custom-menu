@@ -109,7 +109,7 @@ function getItems() {
 
 // Save Items
 function saveItems() {
-    chrome.storage.sync.set( { "items": getItems }, () => {
+    chrome.storage.sync.set( { "items": getItems() }, () => {
         alert( "Updated the sidebar settings for moodle. You can now reload your moodle site." );
         window.location.reload();
     });
