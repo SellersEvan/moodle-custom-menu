@@ -12,7 +12,7 @@
 
 
 // Add Item rows
-function addItemRow( meta={ "label": "", "link": "", "icon": "" } ) {
+function addItemRow( meta={ "label": "", "link": "" } ) {
     let container = document.querySelector( ".item-list-container" );
     let itemCount = document.querySelectorAll( ".item-list-container .item-row" ).length;
     let innerHTML = `
@@ -25,11 +25,6 @@ function addItemRow( meta={ "label": "", "link": "", "icon": "" } ) {
                             <div class="item-input">
                                 <p>Link</p>
                                 <input class="item-control-link" type="text" placeholder="https://moodle.rose-hulman.edu/my/" value="${ meta.link }">
-                            </div>
-                    
-                            <div class="item-input">
-                                <p>Image URL</p>
-                                <input class="item-control-icon" type="text" placeholder="https://sellersew.com/favicon/favicon-32x32.png" value="${ meta.icon }">
                             </div>
                     
                             <div class="item-contol">
@@ -94,13 +89,11 @@ function getItems() {
     document.querySelectorAll( ".item-list-container .item-row" ).forEach( elm => {
         let _label = elm.querySelector( ".item-control-label" ).value;
         let _link  = elm.querySelector( ".item-control-link" ).value;
-        let _icon  = elm.querySelector( ".item-control-icon" ).value;
 
         if ( _label != "" && _link != "" )
             items.push( {
                     "label": _label,
-                    "link": _link,
-                    "icon": _icon,
+                    "link": _link
                 });
     });
     return items;
